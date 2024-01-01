@@ -1,32 +1,43 @@
 
-def show_balance(balance):
+def show_balance(balance: float) -> None:
+    """Display the current account balance."""
     print("Current Balance: $" + str(balance))
 
 
-def deposit(balance):
-    amount = input("Enter amount to deposit: ")
-    balance = balance + float(amount)
+def deposit(balance: float) -> float:
+    """Update account balance after the deposit."""
+    amount = float(input("Enter amount to deposit: "))
+    balance += amount
     return balance
 
 
-def withdraw(balance):
-    amount = input("Enter amount to withdraw: ")
-    balance = balance - float(amount)
+def withdraw(balance: float) -> float:
+    """Update account balance after the withdrawal."""
+    amount = float(input("Enter amount to withdraw: "))
+    balance -= amount
     return balance
 
 
-def logout(name):
+def logout(name: str) -> None:
+    """Logout from the ATM."""
     print("Goodbye", name + "!")
 
 
-def check_name(name):
+def validate_name(name: str) -> str:
+    """
+    Validate the user's name.
+
+    Args:
+        name (str): The user's name.
+
+    Returns:
+        str: The validated user name.
+    """
     while True:
-        if len(name) in range(1, 11):
-            break
+        if 1 <= len(name) <= 10:
+            return name
         elif len(name) < 1:
             print("You must enter a name")
-            name = input("Enter name to register: ")
         elif len(name) > 10:
             print("The maximum name length is 10 characters")
-            name = input("Enter name to register: ")
-    return name
+        name = input("Enter name to register: ")
